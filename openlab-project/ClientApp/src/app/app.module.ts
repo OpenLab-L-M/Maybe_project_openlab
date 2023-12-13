@@ -13,26 +13,49 @@ import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.
 import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { GuildsComponent } from './guilds/guilds.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GuildDetailsComponent } from './guild-details/guild-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    DashboardComponent,
     NavMenuComponent,
     HomeComponent,
     CounterComponent,
-    FetchDataComponent
+    FetchDataComponent,
+    GuildsComponent,
+    GuildDetailsComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatTableModule,
+    MatSnackBarModule,
     ApiAuthorizationModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
-      { path: 'dashboard', component: DashboardComponent, canActivate: [AuthorizeGuard] }
-    ])
+      { path: 'dashboard', component: DashboardComponent, canActivate: [AuthorizeGuard] },
+      { path: 'guilds', component: GuildsComponent },
+      { path: 'guilds/:guildId', component: GuildDetailsComponent },
+    ], { bindToComponentInputs: true })
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true }

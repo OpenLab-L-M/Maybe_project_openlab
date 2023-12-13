@@ -1,26 +1,18 @@
-import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject } from '@angular/core';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { UserInfo } from '../user-info';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
-  standalone: true,
-  imports: [MatProgressBarModule, CommonModule]
+  styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  userDetail: UserDetail;
+  userDetail: UserInfo;
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<UserDetail>(baseUrl + 'user').subscribe(result => {
+    http.get<UserInfo>(baseUrl + 'user').subscribe(result => {
       this.userDetail = result;
     }, error => console.error(error));
   }
-}
-
-interface UserDetail {
-  guildName: string;
-  xp: number;
 }

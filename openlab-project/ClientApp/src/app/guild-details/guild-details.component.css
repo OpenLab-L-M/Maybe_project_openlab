@@ -1,0 +1,8 @@
+.guild-members {
+    margin-top: 1.5rem;
+    display: flex;
+}
+
+.guild-members button {
+    margin-left: auto;
+}

@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using openlab_project.Data;
 using openlab_project.Models;
+using openlab_project.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +23,7 @@ builder.Services.AddAuthentication()
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.AddScoped<IGuildService, GuildServiceImpl>();
 
 var app = builder.Build();
 
