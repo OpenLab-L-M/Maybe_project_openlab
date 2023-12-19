@@ -4,8 +4,8 @@
     <mat-divider></mat-divider>
     <div class="guild-members">
         <h2>Guild members</h2>
-        <button mat-raised-button color="primary" (click)="leaveGuild()">Leave Guild</button>
-        <button mat-raised-button color="primary" (click)="joinGuild()">Join Guild</button>
+        <button class="leave" mat-raised-button color="primary" (click)="leaveGuild()">Leave Guild</button>
+        <button class="join" mat-raised-button color="primary" (click)="joinGuild()">Join Guild</button>
     </div>
     <div *ngIf="guildDetail().members.length; else noMembers">
       <p *ngFor="let member of guildDetail().members">

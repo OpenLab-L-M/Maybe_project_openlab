@@ -13,5 +13,11 @@ export class CreateGuildComponent {
   desc = new FormControl('');
   mmc = new FormControl('');
   
-
+  createGuild() {
+    console.log('Guild Name:', this.name.value);
+    console.log('Guild Description:', this.desc.value);
+    console.log('Max Member Count:', this.mmc.value);
+  }
 }
+
+

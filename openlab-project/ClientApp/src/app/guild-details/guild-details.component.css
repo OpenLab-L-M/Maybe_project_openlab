@@ -6,3 +6,11 @@
 .guild-members button {
     margin-left: auto;
 }
+
+.guild-members .leave {
+    background-color: crimson;
+}
+
+.guild-members .join {
+    background-color: chartreuse;
+}
