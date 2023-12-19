@@ -1,4 +1,4 @@
-<h1>Currently existing guilds!</h1>
+<h1>Guilds</h1>
 
 <mat-accordion>
     <mat-expansion-panel hideToggle *ngFor="let guild of guilds()">
@@ -12,3 +12,7 @@
         </p>
     </mat-expansion-panel>
 </mat-accordion>
+
+<p>
+  <a [routerLink]="['/create-guild']">create</a>
+</p>

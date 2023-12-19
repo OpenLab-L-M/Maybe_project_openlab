@@ -23,6 +23,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GuildDetailsComponent } from './guild-details/guild-details.component';
+import { CreateGuildComponent } from './create-guild/create-guild.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { GuildDetailsComponent } from './guild-details/guild-details.component';
     MatTableModule,
     MatSnackBarModule,
     ApiAuthorizationModule,
+    
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
@@ -55,6 +57,8 @@ import { GuildDetailsComponent } from './guild-details/guild-details.component';
       { path: 'dashboard', component: DashboardComponent, canActivate: [AuthorizeGuard] },
       { path: 'guilds', component: GuildsComponent },
       { path: 'guilds/:guildId', component: GuildDetailsComponent },
+      { path: 'create-guild', component: CreateGuildComponent },
+
     ], { bindToComponentInputs: true })
   ],
   providers: [

@@ -10,7 +10,8 @@
     "build": "ng build",
     "build:ssr": "ng run openlab_project:server:dev",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "create_guild": "ng g c create-guild --module=app.module.ts"
   },
   "private": true,
   "dependencies": {
