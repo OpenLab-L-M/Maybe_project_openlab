@@ -1,25 +1,29 @@
-
-  <p class="nadpis">Create your guild!</p>
   <body>
-    <div class="formy">
-      <p>
-        <label for="name">Guild name: </label> <br>
-        <input id="name" type="text" [formControl]="name">
-      </p>
+    <div class="tabulka">
+      <h1>Create your guild</h1>
+      <div class="formy">
+        <p>
+          <input id="name" type="text" [formControl]="name">
+          <span></span>
+          <label for="name">Guild name: </label>
+        </p>
 
-      <p>
-        <label for="desc">Guild description: </label> <br>
-        <input id="desc" type="text" [formControl]="desc">
-      </p>
+        <p>
+          <input id="desc" type="text" [formControl]="desc">
+          <span></span>
+          <label for="desc">Guild description: </label>
+        </p>
 
-      <p>
-        <label for="mmc">Max member count: </label> <br>
-        <input id="mmc" type="text" [formControl]="mmc">
-      </p>
-      <button type="button" (click)="createGuild()">Create guild</button>
+        <p>
+          <input id="mmc" type="text" [formControl]="mmc">
+          <span></span>
+          <label for="mmc">Max member count: </label>
+        </p>
+        <button type="button" (click)="createGuild()">Create guild</button>
+      </div>
     </div>
-  </body>
-<br>
+  
+</body>
 
 
 
