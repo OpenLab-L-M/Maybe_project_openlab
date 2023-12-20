@@ -1,29 +1,32 @@
+
   <body>
     <div class="tabulka">
       <h1>Create your guild</h1>
       <div class="formy">
-        <p>
-          <input id="name" type="text" [formControl]="name">
-          <span></span>
-          <label for="name">Guild name: </label>
-        </p>
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+          <p>
+            <input id="name" type="text" formControlName="name">
+            <span></span>
+            <label for="name">Guild name: </label>
+          </p>
 
-        <p>
-          <input id="desc" type="text" [formControl]="desc">
-          <span></span>
-          <label for="desc">Guild description: </label>
-        </p>
+          <p>
+            <input id="desc" type="text" formControlName="desc">
+            <span></span>
+            <label for="desc">Guild description: </label>
+          </p>
 
-        <p>
-          <input id="mmc" type="text" [formControl]="mmc">
-          <span></span>
-          <label for="mmc">Max member count: </label>
-        </p>
-        <button type="button" (click)="createGuild()">Create guild</button>
+          <p>
+            <input id="mmc" type="text" formControlName="mmc">
+            <span></span>
+            <label for="mmc">Max member count: </label>
+          </p>
+          <button type="submit" [disabled]="!profileForm.valid">Create guild</button>
+
+        </form>
       </div>
     </div>
-  
-</body>
+  </body>
 
 
 

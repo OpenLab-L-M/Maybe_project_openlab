@@ -6,3 +6,23 @@ a {
     margin-top: 1rem;
     margin-right: 0.5rem;
 }
+
+button {
+  width: 85%;
+  margin: 30px auto; /* Pridané */
+  display: block; /* Pridané */
+
+  height: 50px;
+  border: 1px solid;
+  background: #2691d9;
+  border-radius: 25px;
+  font-size: 18px;
+  color: #e9f4fb;
+  cursor: pointer;
+  font-weight: 400;
+  outline: none;
+  transition: width 1s;
+}
+button:hover{
+    width: 92%;
+}

@@ -17,6 +17,7 @@ body {
   transform: translate(-50%, -50%);
   width: 400px;
   background: white;
+  opacity:80%;
   border-radius: 10px;
 }
 
@@ -74,10 +75,11 @@ h1 {
   }
 
 .formy button {
-  width: 90%;
-  padding-left: 40px;
-  right: 0;
+  width: 85%;
   
+  margin: 30px auto; /* Pridané */
+  display: block; /* Pridané */
+
   height: 50px;
   border: 1px solid;
   background: #2691d9;
@@ -87,9 +89,15 @@ h1 {
   cursor: pointer;
   font-weight: 700;
   outline: none;
+  transition: width 0.5s;
 }
+  .formy button:hover {
+    width: 89%;
+
+  }
     .formy input:hover{
         border-color: #2691d9;
         transition: .5s;
+        
     }
 

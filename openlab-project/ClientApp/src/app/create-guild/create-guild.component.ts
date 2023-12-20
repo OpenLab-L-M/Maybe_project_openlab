@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   standalone: true,
@@ -9,14 +10,20 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
   imports: [ReactiveFormsModule],
 })
 export class CreateGuildComponent {
-  name = new FormControl('');
-  desc = new FormControl('');
-  mmc = new FormControl('');
+  profileForm = new FormGroup({
+    name: new FormControl(''),
+    desc: new FormControl(''),
+    mmc: new FormControl(''),
+  });
   
-  createGuild() {
-    console.log('Guild Name:', this.name.value);
-    console.log('Guild Description:', this.desc.value);
-    console.log('Max Member Count:', this.mmc.value);
+  /*createGuild() {
+    console.warn(this.name.value);
+    console.warn(this.desc.value);
+    console.warn(this.mmc.value);
+  }*/
+
+  onSubmit() {
+    console.warn(this.profileForm.value);
   }
 }
 
