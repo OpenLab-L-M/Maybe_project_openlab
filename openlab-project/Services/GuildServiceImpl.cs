@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 using openlab_project.Data;
 using openlab_project.Dto;
 using openlab_project.Dto.guild;
@@ -87,7 +88,18 @@ namespace openlab_project.Services
                 Description = dbGuild.Description,
                 Members = MapApplicationUsersToDto(guildMembers)
             };
-
+        public CreateGuild? CreateGuild(CreateGuild newGuild) { 
+            var neviem = new Guild()
+            {
+                Name = newGuild.GuildName,
+                Capacity = newGuild.GuildMaxCapacity,
+                Description = newGuild.GuildDescription,
+                
+            };
+            _context.Add(neviem);
+            _context.SaveChanges();
+            return newGuild;
+        }
         private static IEnumerable<UserInfo> MapApplicationUsersToDto(IEnumerable<ApplicationUser> users) =>
             users.Select(user => new UserInfo { Name = user.UserName, Xp = user.Xp }).ToList();
 

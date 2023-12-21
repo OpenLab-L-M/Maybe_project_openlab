@@ -1,6 +1,13 @@
-import { Component } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { CreateguildService } from './create-guild-service.service'
+import { Component, Input, OnDestroy, OnInit, signal } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
+import { GuildService } from '../guilds/guild.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { inject } from '@angular/core';
+import { AuthorizeService } from '../../api-authorization/authorize.service';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+import { Createguildinfo } from './create-guild-info' 
 
 @Component({
   standalone: true,
@@ -10,12 +17,15 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [ReactiveFormsModule],
 })
 export class CreateGuildComponent {
+  newGuild = signal<Createguildinfo>(undefined);
+  constructor(private guildService: CreateguildService) { }
   profileForm = new FormGroup({
     name: new FormControl(''),
     desc: new FormControl(''),
     mmc: new FormControl(''),
   });
-  
+  private destroy$ = new Subject<void>();
+
   /*createGuild() {
     console.warn(this.name.value);
     console.warn(this.desc.value);
@@ -24,7 +34,16 @@ export class CreateGuildComponent {
 
   onSubmit() {
     console.warn(this.profileForm.value);
+    this.createGuild();
   }
+  private createGuild() {
+    this.guildService.createGuild({
+      guildName: this.profileForm.controls['name'].value,
+      guildDescription: this.profileForm.controls['desc'].value,
+      guildMaxCapacity: this.profileForm.controls['mmc'].value })
+      .pipe(takeUntil(this.destroy$))
+      .subscribe();
+  }
+
+
 }
-
-

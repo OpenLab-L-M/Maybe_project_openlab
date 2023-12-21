@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using openlab_project.Data;
 using openlab_project.Dto.guild;
+using openlab_project.Models;
 using openlab_project.Services;
 
 namespace openlab_project.Controllers
@@ -27,8 +29,15 @@ namespace openlab_project.Controllers
         [HttpDelete("leave")]
         public ActionResult<GuildDetailsInfo?> LeaveGuild() =>
             GetResponse(_guildService.RemoveCurrentUserFromGuild(GetCurrentUser()));
+        [HttpPost("create")]
+        public ActionResult<CreateGuild?> CreateGuild([FromBody] CreateGuild? guild) =>
+            GetAnother(_guildService.CreateGuild(guild));
+
 
         private ActionResult<GuildDetailsInfo?> GetResponse(GuildDetailsInfo? guildDetail) =>
             guildDetail == null ? NotFound() : Ok(guildDetail);
+        private ActionResult<CreateGuild?> GetAnother(CreateGuild? guild) =>
+        guild == null ? NotFound() : Ok(guild);
     }
+
 }
