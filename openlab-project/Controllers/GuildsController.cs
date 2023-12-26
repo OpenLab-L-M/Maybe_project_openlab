@@ -32,12 +32,18 @@ namespace openlab_project.Controllers
         [HttpPost("create")]
         public ActionResult<CreateGuild?> CreateGuild([FromBody] CreateGuild? guild) =>
             GetAnother(_guildService.CreateGuild(guild));
-
+        [HttpDelete ("{guildId:int}")]
+        public string DeleteEmploye(int guildId)
+        {
+            return _guildService.DeleteGuild(guildId);
+        }
 
         private ActionResult<GuildDetailsInfo?> GetResponse(GuildDetailsInfo? guildDetail) =>
             guildDetail == null ? NotFound() : Ok(guildDetail);
         private ActionResult<CreateGuild?> GetAnother(CreateGuild? guild) =>
         guild == null ? NotFound() : Ok(guild);
+
+
     }
 
 }

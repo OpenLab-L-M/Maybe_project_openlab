@@ -42,6 +42,11 @@ export class GuildDetailsComponent implements OnInit, OnDestroy {
             .subscribe((guildDetail: GuildDetailsInfo) =>
                 this.setDetailAndShowSnack(guildDetail, 'You have been removed from the guild!', 'Something went wrong!'));
     }
+  deleteBtn() {
+    this.guildService.deleteGuild(this.guildIdFromRoute)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe()
+  }
 
     private setDetailAndShowSnack(guildDetail: GuildDetailsInfo, successMessage: string, failMessage: string) {
         if (guildDetail) {

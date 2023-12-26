@@ -8,7 +8,7 @@ import { GuildDetailsInfo } from '../guild-details/guild-details-info';
   providedIn: 'root'
 })
 export class GuildService {
-    private guildsUrl = this.baseUrl + 'guilds/';
+  private guildsUrl = this.baseUrl + 'guilds/';
     
     constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
@@ -26,5 +26,9 @@ export class GuildService {
 
     leaveGuild() {
         return this.http.delete<GuildDetailsInfo>(this.guildsUrl + 'leave');
-    }
+  }
+  deleteGuild(guildId: number) {
+
+    return this.http.delete<GuildDetailsInfo>(this.guildsUrl + guildId);
+  }
 }

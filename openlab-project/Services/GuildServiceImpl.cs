@@ -100,6 +100,21 @@ namespace openlab_project.Services
             _context.SaveChanges();
             return newGuild;
         }
+        public string? DeleteGuild(int guildId)
+        {
+            Guild guild = _context.Guild.Where(x => x.Id == guildId).Single <Guild> ();
+            _context.Remove(guild);
+            _context.SaveChanges();
+            return "guild was deleted";
+
+        }
+       /* public string DeleteEmploye(int empId)
+        {
+            Employe emp = db.Employes.Where(x => x.EmpID == empId).Single<Employe>();
+            db.Employes.Remove(emp);
+            db.SaveChanges();
+            return "Record has successfully Deleted";
+        }*/
         private static IEnumerable<UserInfo> MapApplicationUsersToDto(IEnumerable<ApplicationUser> users) =>
             users.Select(user => new UserInfo { Name = user.UserName, Xp = user.Xp }).ToList();
 
