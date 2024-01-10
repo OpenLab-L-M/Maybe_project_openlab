@@ -17,6 +17,7 @@ export class GuildDetailsComponent implements OnInit, OnDestroy {
     guildService = inject(GuildService);
   snackBar = inject(MatSnackBar);
   router = inject(Router);
+  searchGuild: string;
 
     @Input('guildId') guildIdFromRoute: number;
     private destroy$ = new Subject<void>();

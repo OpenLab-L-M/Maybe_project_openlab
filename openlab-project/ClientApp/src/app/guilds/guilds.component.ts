@@ -1,8 +1,9 @@
 import { Component, Input, OnDestroy, OnInit, signal } from '@angular/core';
-import { inject } from '@angular/core';
+import { inject,EventEmitter } from '@angular/core';
 import { GuildService } from './guild.service';
 import { Subject, takeUntil } from 'rxjs';
 import { GuildInfo } from './guild-info';
+
 
 @Component({
   selector: 'app-guilds',
@@ -14,6 +15,12 @@ export class GuildsComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
     guilds = signal<GuildInfo[]>([]);
   guild = signal<GuildInfo>(undefined);
+  sSearchGuild: string;
+  searchGuild: EventEmitter<string> = new EventEmitter<string>();
+
+  updateGuildList(event: any) {
+    this.sSearchGuild = event.target.value;
+  }
 
     ngOnInit(): void {
         this.guildService.getGuildList()
@@ -24,5 +31,8 @@ export class GuildsComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.destroy$.next();
         this.destroy$.complete();
-    }
+  }
+  onGuildListChanged() {
+    this.searchGuild.emit();
+  }
 }

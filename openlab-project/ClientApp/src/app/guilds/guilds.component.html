@@ -1,8 +1,11 @@
-<h1>Guilds</h1>
 
+<h1>Guilds</h1>
+<div>
+  <input [(ngModel)]="sSearchGuild" (input)="onGuildListChanged()" />
+</div>
 <mat-accordion>
   <mat-expansion-panel hideToggle *ngFor="let guild of guilds()">
-    <mat-expansion-panel-header>
+    <mat-expansion-panel-header *ngIf="sSearchGuild === '' || guild.name.toLowerCase().includes(sSearchGuild)">
       <mat-panel-title> {{guild.name}} </mat-panel-title>
       <mat-panel-description> [{{ guild.membersCount }}/{{ guild.capacity }}]</mat-panel-description>
     </mat-expansion-panel-header>
