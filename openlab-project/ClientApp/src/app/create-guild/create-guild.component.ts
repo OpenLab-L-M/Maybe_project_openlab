@@ -7,7 +7,8 @@ import { inject } from '@angular/core';
 import { AuthorizeService } from '../../api-authorization/authorize.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
-import { Createguildinfo } from './create-guild-info' 
+import { Createguildinfo } from './create-guild-info';
+import { Router } from '@angular/router'
 
 @Component({
   standalone: true,
@@ -18,7 +19,7 @@ import { Createguildinfo } from './create-guild-info'
 })
 export class CreateGuildComponent {
   newGuild = signal<Createguildinfo>(undefined);
-  constructor(private guildService: CreateguildService) { }
+  constructor(private guildService: CreateguildService, private router: Router) { }
   profileForm = new FormGroup({
     name: new FormControl(''),
     desc: new FormControl(''),
@@ -42,7 +43,7 @@ export class CreateGuildComponent {
       guildDescription: this.profileForm.controls['desc'].value,
       guildMaxCapacity: this.profileForm.controls['mmc'].value })
       .pipe(takeUntil(this.destroy$))
-      .subscribe();
+      .subscribe(() => this.router.navigate(['/guilds']));
   }
 
 
