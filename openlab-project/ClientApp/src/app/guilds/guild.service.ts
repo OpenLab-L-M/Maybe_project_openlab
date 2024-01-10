@@ -27,8 +27,8 @@ export class GuildService {
     leaveGuild() {
         return this.http.delete<GuildDetailsInfo>(this.guildsUrl + 'leave');
   }
-  deleteGuild(guildId: number) {
 
-    return this.http.delete<GuildDetailsInfo>(this.guildsUrl + guildId);
+  deleteGuild(guildId: number) {
+    return this.http.delete<string>(this.guildsUrl + guildId);
   }
 }

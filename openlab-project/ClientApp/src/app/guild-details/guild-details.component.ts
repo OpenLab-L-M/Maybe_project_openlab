@@ -5,6 +5,7 @@ import { GuildDetailsInfo } from './guild-details-info';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { inject } from '@angular/core';
 import { AuthorizeService } from '../../api-authorization/authorize.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-guild-details',
@@ -14,7 +15,8 @@ import { AuthorizeService } from '../../api-authorization/authorize.service';
 export class GuildDetailsComponent implements OnInit, OnDestroy {
     authService = inject(AuthorizeService);
     guildService = inject(GuildService);
-    snackBar = inject(MatSnackBar);
+  snackBar = inject(MatSnackBar);
+  router = inject(Router);
 
     @Input('guildId') guildIdFromRoute: number;
     private destroy$ = new Subject<void>();
@@ -42,11 +44,12 @@ export class GuildDetailsComponent implements OnInit, OnDestroy {
             .subscribe((guildDetail: GuildDetailsInfo) =>
                 this.setDetailAndShowSnack(guildDetail, 'You have been removed from the guild!', 'Something went wrong!'));
     }
+
   deleteBtn() {
     this.guildService.deleteGuild(this.guildIdFromRoute)
       .pipe(takeUntil(this.destroy$))
-      .subscribe()
-  }
+      .subscribe(() => this.router.navigate(['/guilds']));
+    }
 
     private setDetailAndShowSnack(guildDetail: GuildDetailsInfo, successMessage: string, failMessage: string) {
         if (guildDetail) {

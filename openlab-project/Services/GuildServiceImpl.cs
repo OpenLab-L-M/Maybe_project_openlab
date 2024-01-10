@@ -102,7 +102,7 @@ namespace openlab_project.Services
         }
         public string? DeleteGuild(int guildId)
         {
-            Guild guild = _context.Guild.Where(x => x.Id == guildId).Single <Guild> ();
+            Guild guild = _context.Guild.Single(x => x.Id == guildId);
             _context.Remove(guild);
             _context.SaveChanges();
             return "guild was deleted";
