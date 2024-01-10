@@ -13,7 +13,9 @@
     "test": "ng test",
     "create_guild": "ng g c create-guild --module=app.module.ts",
     "create_guildService": "ng g s createGuildService",
-    "creat_class": "ng g class CreateGuildInfo"
+    "creat_class": "ng g class CreateGuildInfo",
+    "pipe": "ng g pipe search"
+
   },
   "private": true,
   "dependencies": {

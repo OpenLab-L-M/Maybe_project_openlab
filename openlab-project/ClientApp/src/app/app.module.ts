@@ -24,6 +24,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GuildDetailsComponent } from './guild-details/guild-details.component';
 import { CreateGuildComponent } from './create-guild/create-guild.component';
+import { FilterPipe } from './guilds/FilterPipe';
+
+
 
 @NgModule({
   declarations: [
@@ -35,6 +38,8 @@ import { CreateGuildComponent } from './create-guild/create-guild.component';
     FetchDataComponent,
     GuildsComponent,
     GuildDetailsComponent,
+    FilterPipe
+
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
