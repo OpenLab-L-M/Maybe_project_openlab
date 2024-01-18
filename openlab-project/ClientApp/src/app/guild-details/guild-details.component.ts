@@ -1,11 +1,14 @@
-import { Component, Input, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, computed, effect, signal } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { GuildService } from '../guilds/guild.service';
 import { GuildDetailsInfo } from './guild-details-info';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { AuthorizeService } from '../../api-authorization/authorize.service';
 import { Router } from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
+import { UserInfo } from '../user-info';
 
 @Component({
     selector: 'app-guild-details',
@@ -22,7 +25,14 @@ export class GuildDetailsComponent implements OnInit, OnDestroy {
     @Input('guildId') guildIdFromRoute: number;
     private destroy$ = new Subject<void>();
 
-    guildDetail = signal<GuildDetailsInfo>(undefined);
+  guildMembersDataSource: MatTableDataSource<UserInfo>;
+  guildDetail = signal<GuildDetailsInfo>(undefined);
+  private user = toSignal(this.authService.getUser());
+  isUserInGuild = computed(() => !!this.guildDetail()?.members.find(member => member.name === this.user().name));
+
+  constructor() {
+    effect(() => { if (this.guildDetail()) this.guildMembersDataSource = new MatTableDataSource });
+  }
 
     ngOnInit(): void {
         if (this.guildIdFromRoute) {
