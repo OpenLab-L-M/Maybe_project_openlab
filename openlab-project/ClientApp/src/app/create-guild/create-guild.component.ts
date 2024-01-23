@@ -5,7 +5,7 @@ import { GuildService } from '../guilds/guild.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { inject } from '@angular/core';
 import { AuthorizeService } from '../../api-authorization/authorize.service';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { Createguildinfo } from './create-guild-info';
 import { Router } from '@angular/router'
@@ -21,9 +21,9 @@ export class CreateGuildComponent {
   newGuild = signal<Createguildinfo>(undefined);
   constructor(private guildService: CreateguildService, private router: Router) { }
   profileForm = new FormGroup({
-    name: new FormControl(''),
-    desc: new FormControl(''),
-    mmc: new FormControl(''),
+    name: new FormControl('', Validators.required),
+    desc: new FormControl('', Validators.required),
+    mmc: new FormControl(0, Validators.min(1)),
   });
   private destroy$ = new Subject<void>();
 

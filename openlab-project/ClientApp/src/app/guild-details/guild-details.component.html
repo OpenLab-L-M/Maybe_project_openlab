@@ -7,6 +7,7 @@
       <h2>Guild members</h2>
         <button *ngIf="isUserInGuild()" class="leave" mat-raised-button color="primary" (click)="leaveGuild()">Leave Guild</button>
         <button *ngIf="!isUserInGuild()" class="join" mat-raised-button color="primary" (click)="joinGuild()">Join Guild</button>
+          <button mat-raised-button color="primary"  [routerLink]="['/guilds']">back</button>
           <button mat-raised-button color="primary" (click)="deleteBtn()">Delete Guild</button>
 </div>
     <div *ngIf="guildDetail().members.length; else noMembers">
